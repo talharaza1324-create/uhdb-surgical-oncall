@@ -1161,9 +1161,10 @@ function expandNav(section){
   });
 }
 function _initApp() {
-  updateSidebarActive(state.section, state.page);
-  expandNav(state.section);
-  updateNav();
+  // Fully re-sync everything to state.section / state.page so the visible
+  // section, active page, sidebar highlight, expanded submenu and page-nav
+  // all match — robust against any stale HTML state on cached loads.
+  goToSection(state.section, state.page);
 }
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', _initApp);
